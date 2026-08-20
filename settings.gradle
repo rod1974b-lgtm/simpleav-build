@@ -1,0 +1,9 @@
+pluginManagement {
+    repositories { google(); mavenCentral(); gradlePluginPortal(); maven { url 'https://chaquo.com/maven' } }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.PREFER_PROJECT)
+    repositories { google(); mavenCentral(); maven { url 'https://chaquo.com/maven' } }
+}
+rootProject.name = 'simpleav'
+include ':app'
