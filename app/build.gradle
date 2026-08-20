@@ -1,0 +1,43 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'com.chaquo.python'
+}
+android {
+    namespace 'com.simpleav.antivirus'
+    compileSdk 34
+    defaultConfig {
+        applicationId 'com.simpleav.antivirus'
+        minSdk 24
+        targetSdk 34
+        versionCode 6
+        versionName '6.0'
+        ndk { abiFilters 'arm64-v8a', 'x86_64' }
+        python {
+            buildPython 'python3'
+            version '3.8'
+        }
+    }
+    signingConfigs {
+        release {
+            storeFile file(project.rootDir.absolutePath + '/app/keystore.jks')
+            storePassword System.getenv('KEYSTORE_PASSWORD') ?: 'Katz@usd9z5vd!'
+            keyAlias 'appkey'
+            keyPassword System.getenv('KEY_PASSWORD') ?: 'Katz@usd9z5vd!'
+        }
+    }
+    buildTypes {
+        release { minifyEnabled false; signingConfig signingConfigs.release }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions { jvmTarget = '17' }
+}
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'androidx.webkit:webkit:1.12.1'
+    implementation 'androidx.core:core-ktx:1.13.1'
+    implementation 'androidx.activity:activity-ktx:1.9.0'
+}
